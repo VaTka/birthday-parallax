@@ -1,0 +1,196 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+    --text: rgba(247, 201, 15, 0.78);
+    --transition: transform .75s cubic-bezier(.075, .5, 0, 1);
+}
+
+@font-face {
+    font-family: raleway_f;
+    src: url("fonts/raleway-regular.woff2");
+}
+
+@font-face {
+    font-family: raleway_f;
+    src: url("fonts/raleway-black.woff2");
+    font-weight: 900;
+}
+
+body {
+    background-color: #010101;
+    color: white;
+    font-family: raleway_f, sans-serif;
+    line-height: 1.55;
+}
+
+.main-header {
+    position: relative;
+}
+.main-header::after {
+    content: '';
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: calc(var(--index)*16);
+    background-image: url(img/ground.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    bottom: calc(var(--index)*-7);
+}
+
+.layers {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.layer {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.layers__base {
+    transform: translate3d(0, calc(var(--scrollTop)/1.6), 0);
+    z-index: 0;
+}
+
+.layers__middle {
+    transform: translate3d(0, calc(var(--scrollTop)/2.5), 0);
+    z-index: 0;
+
+}
+.layers__front {
+    transform: translate3d(0, calc(var(--scrollTop)/5), 0);
+}
+
+.layer__header {
+    z-index: 1;
+    transform: translate3d(0, calc(var(--scrollTop)/2), 0);
+    transition: var(--transition);
+    will-change: transform;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: rgba(247, 201, 15, 0.78);
+    text-shadow: 0 0 15px #e58109;
+}
+
+.layer__title {
+    font-size: calc(var(--index)*2.5);
+    letter-spacing: calc(var(--index)/2.25);
+}
+
+.layer__caption {
+    font-size: calc(var(--index)/ 1.175);
+    letter-spacing: calc(var(--index)/3.5);
+    margin-top: calc(var(--index)*1);
+}
+
+.main-article {
+    --main-article-transform: translate3d(0, calc(var(--scrollTop)/-15), 0);
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main-content__header{
+    text-transform: uppercase;
+    font-size: calc(var(--index)*1.8);
+    letter-spacing: calc(var(--index)/7);
+    transform: var(--main-article-transform);
+    transition: var(--transition);
+    will-change: transform;
+    text-shadow: 0 0 15px #3f3f3f;
+}
+
+.main-article__paragraph {
+    max-width: calc(var(--index)*30);
+    font-size: calc(var(--index)*.9);
+    margin-top: calc(var(--index)/1);
+    transform: var(--main-article-transform);
+    transition: var(--transition);
+    will-change: transform;
+    text-shadow: 0 0 15px #696969;
+}
+.main-article__paragraph span {
+    color: #fcab08;
+    font-weight: bold;
+}
+
+.main-content__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.main-heart {
+    height: 70px;
+    width: 70px;
+    background-color: #fcab08;
+    position: relative;
+    transform: rotate(-45deg);
+    box-shadow: -10px 10px 90px #fcab08;
+    animation: heart 0.6s linear infinite;
+}
+
+@keyframes heart {
+    0%{
+        transform: rotate(-45deg) scale(1.07);
+    }
+    80%{
+        transform: rotate(-45deg) scale(1.0);
+    }
+    100%{
+        transform: rotate(-45deg) scale(.8);
+    }
+}
+
+.main-heart:before {
+    content: '';
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    background-color: #fcab08;
+    top: -50%;
+    right: 0%;
+    border-radius: 50px;
+    box-shadow: -10px -10px 90px #fcab08;
+
+}
+.main-heart:after {
+    content: '';
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    background-color: #fcab08;
+    top: 0%;
+    border-radius: 50px;
+    box-shadow: 10px 10px 90px #fcab08;
+
+}
+
+.content {
+    will-change: transform;
+}
